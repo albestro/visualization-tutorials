@@ -1,3 +1,4 @@
+from pathlib import Path
 from simulation import SimulationData
 
 from matplotlib import pyplot as plt
@@ -7,8 +8,12 @@ import numpy as np
 def draw_matplotlib(simdata: SimulationData) -> None:
     """Draw with mathplotlib"""
 
-    if simdata.iteration % 100 != 0:
+    if simdata.iteration % 25 != 0:
         return
+
+    outdir = Path("./output")
+    if not outdir.is_dir():
+        outdir.mkdir()
 
     # plot the 'vel_x' field iso-contour lines
     _, ax = plt.subplots()
@@ -23,7 +28,7 @@ def draw_matplotlib(simdata: SimulationData) -> None:
     )
     ax.clabel(CS, inline=True, fontsize=10)
     ax.set_title("Velocity magnitude iso-contours")
-    plt.savefig(f"output/Velocitymagnitude.{simdata.iteration:03d}.png")
+    plt.savefig(outdir / f"Velocitymagnitude.{simdata.iteration:03d}.png")
 
     # plot the velocity vectors sub-sampled
     _, ax1 = plt.subplots()
@@ -41,4 +46,4 @@ def draw_matplotlib(simdata: SimulationData) -> None:
         simdata.vy.T[::stride, ::stride],  # TODO
     )
     ax1.set_title("Velocity vectors")
-    plt.savefig(f"output/Velocity-new.{simdata.iteration:03d}.png")
+    plt.savefig(outdir / f"Velocity-new.{simdata.iteration:03d}.png")

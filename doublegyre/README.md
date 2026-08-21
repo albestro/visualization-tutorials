@@ -70,7 +70,6 @@ uv pip install tqdm matplotlib      # required for matplotlib adaptor
 python simulation.py                # it just runs the simulation without any adaptor
 
 # run simulation with matplotlib adaptor
-mkdir output                        # create the output folder
 python simulation.py matplotlib     # run with the matplotlib adaptor
 ```
 
