@@ -11,11 +11,11 @@ from simulation import SimulationData
 class CatalystAdaptor:
     def __init__(
         self,
-        script: str,
+        config_filepath: str,
         channel: str = "grid",
-        coordtype: str = "uniform",
+        coordtype: str = "rectilinear",
     ):
-        self._script = script
+        self._config_filepath = config_filepath
         self._channel = channel
         self._coordtype = coordtype
 
@@ -24,23 +24,15 @@ class CatalystAdaptor:
     def __enter__(self) -> Self:
         node = conduit.Node()
 
-        # TODO it is decided at runtime
-        # node["catalyst_load/implementation"] = "paraview"
-
-        if not self._script is None:
-            node["catalyst/scripts/script0/filename"] = self._script
-
-        # TODO keep note of this somewhere
-        # node["catalyst/pipelines/dump/type"] = "io"
-        # node["catalyst/pipelines/dump/filename"] = "datasets/dump_{timestep:04d}.vtpd"
-        # node["catalyst/pipelines/dump/channel"] = self._channel
+        node = conduit.Node()
+        node.parse(open(self._config_filepath, "r").read(), "yaml")
 
         try:
             catalyst.initialize(node)
+            self._initialized = True
+            return self
         except catalyst.CatalystError as e:
             raise RuntimeError(f"Catalyst initialize failed: {e}")
-        self._initialized = True
-        return self
 
     def __exit__(self, exc_type, exc, tb) -> None:
         if self._initialized:

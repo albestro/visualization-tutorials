@@ -128,7 +128,7 @@ def make_visualization_adaptor_from(args):
         case "insitu":
             from adaptors.catalyst import CatalystAdaptor
 
-            adaptor = CatalystAdaptor(script=args.pipeline, coordtype=args.mesh_type)
+            adaptor = CatalystAdaptor(init_config=args.config, coordtype=args.mesh_type)
             return adaptor, adaptor.callback
         case _:
             return nullcontext(), id
@@ -151,7 +151,7 @@ if __name__ == "__main__":
     cmd_matplotlib = parser_sub.add_parser("matplotlib")
 
     cmd_insitu = parser_sub.add_parser("insitu")
-    cmd_insitu.add_argument("--pipeline", type=str, default=None)
+    cmd_insitu.add_argument("--config", type=str, default=None)
     cmd_insitu.add_argument("--mesh-type", type=str, default="uniform")
 
     args = parser.parse_args()
