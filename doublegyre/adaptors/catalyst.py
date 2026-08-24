@@ -25,7 +25,9 @@ class CatalystAdaptor:
         node = conduit.Node()
 
         node = conduit.Node()
-        node.parse(open(self._config_filepath, "r").read(), "yaml")
+
+        if self._config_filepath:
+            node.parse(open(self._config_filepath, "r").read(), "yaml")
 
         try:
             catalyst.initialize(node)

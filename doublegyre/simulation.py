@@ -128,7 +128,9 @@ def make_visualization_adaptor_from(args):
         case "insitu":
             from adaptors.catalyst import CatalystAdaptor
 
-            adaptor = CatalystAdaptor(init_config=args.config, coordtype=args.mesh_type)
+            adaptor = CatalystAdaptor(
+                config_filepath=args.config, coordtype=args.mesh_type
+            )
             return adaptor, adaptor.callback
         case _:
             return nullcontext(), None
