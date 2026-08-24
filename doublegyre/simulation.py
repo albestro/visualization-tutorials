@@ -131,7 +131,7 @@ def make_visualization_adaptor_from(args):
             adaptor = CatalystAdaptor(init_config=args.config, coordtype=args.mesh_type)
             return adaptor, adaptor.callback
         case _:
-            return nullcontext(), id
+            return nullcontext(), None
 
 
 if __name__ == "__main__":
