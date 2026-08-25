@@ -1,7 +1,7 @@
 ---
 title: Catalyst in-situ Hands-on
 sub_title: A guided walkthrough with a python example
-author: Alberto Invernizzi (Eth Zurich | CSCS) @ ParaView Users' Day 2026
+author: Alberto Invernizzi (ETH Zurich | CSCS) @ ParaView Users' Day 2026
 theme:
   name: catppuccin-latte
 ---
@@ -418,13 +418,14 @@ For more [details](https://docs.paraview.org/en/latest/Catalyst/blueprints.html#
 ```yaml
 catalyst:
     # either
-    scripts: filename
+    scripts:
+        filename: <python-catalyst-script>
     # or
     scripts:
         myscript1:
-            filename:
+            filename: <python-catalyst-script>
         myscript2:
-            filename:
+            filename: <python-catalyst-script>
 ```
 
 <!-- column: 1 -->
@@ -452,17 +453,19 @@ Since the adaptor we implemented parse a yaml file as a node for `catalyst_initi
 Part 3 - ParaView Catalyst | Running with ParaView implementation
 ===
 
+Hence, we can pass to `catalyst-initialize` a Conduit node similar to this one
+
 ```yaml
 catalyst_load:
   implementation: paraview
   search_paths:
     - /Applications/ParaView-6.1.0.app/Contents/Libraries/catalyst
 catalyst:
-    scripts: ...
+    scripts:
+        filename: <path-to-paraview-catalyst-script>
 ```
 
 Wait...but what script are we talking about? 🤔
-===
 
 <!-- end_slide -->
 
@@ -471,7 +474,7 @@ Part 3 - ParaView Catalyst | Need a pipeline script
 
 We need to create a Catalyst ParaView python script to describe what visualization we want to produce...
 
-<!-- column_layout: [1,1] -->
+<!-- column_layout: [2,1] -->
 
 <!-- column: 0 -->
 
@@ -482,32 +485,16 @@ import paraview
 from paraview.simple import *
 
 renderView1 = CreateView('RenderView')
-renderView1.Set(
-    ViewSize=[1164, 625],
-    OrientationAxesVisibility=0,
-    CenterOfRotation=[0.9959283447824419, 0.49609315814450383, 0.0],
-    CameraPosition=[0.9959283447824419, 0.49609315814450383, 4.331848123013008],
-    CameraFocalPoint=[0.9959283447824419, 0.49609315814450383, 0.0],
-    CameraViewAngle=15.463917525773196,
-)
-
-# init the 'Grid Axes 3D Actor' selected for 'AxesGrid'
-renderView1.AxesGrid.Visibility = 1
-
-# create a new 'XML Image Data Reader'
+...
 grid = TrivialProducer(registrationName='grid')
-grid.PointArrayStatus = ['Velocity']
 
-# create a new 'Calculator'
 add_z_component = Calculator(registrationName='add_z_component', Input=grid)
 add_z_component.Set(
     ResultArrayName='velocity',
     Function='Velocity_X * iHat + Velocity_Y * jHat + 0 * kHat',
 )
 
-# create a new 'Glyph'
-vector_field = Glyph(registrationName='vector_field', Input=add_z_component,
-    GlyphType='Arrow')
+vector_field = Glyph(registrationName='vector_field', Input=add_z_component, GlyphType='Arrow')
 vector_field.Set(
     OrientationArray=['POINTS', 'velocity'],
     ScaleArray=['POINTS', 'velocity'],
@@ -550,7 +537,7 @@ Part 3 - ParaView Catalyst | ParaView pipelines/io
 In ParaView Catalyst Blueprint doc, in the definition of `initialize` protocol we see it mentions `pipelines`
 
 ```yaml
-catalyst_load:
+catalyst:
     pipelines:
         type:       io
         channel:    grid                        # mesh channel name used in catalyst_execute node
@@ -611,7 +598,7 @@ So, we can run it...
 uv run simulation.py insitu --config config_catalyst/run_script.yaml
 ```
 
-And produce visualiation output of our simulation!
+And produce visualization output of our simulation!
 
 ```bash
 $ ls datasets
@@ -621,6 +608,12 @@ vector_field-000030.png vector_field-000080.png vector_field-000130.png vector_f
 vector_field-000040.png vector_field-000090.png vector_field-000140.png vector_field-000190.png vector_field-000240.png
 vector_field-000050.png vector_field-000100.png vector_field-000150.png vector_field-000200.png vector_field-000250.png
 ```
+
+<!-- end_slide -->
+
+<!-- jump_to_middle -->
+Part 4 - Extra
+===
 
 <!-- end_slide -->
 
@@ -687,3 +680,51 @@ Conclusion | Useful references
 - [Catalyst documentation](https://catalyst-in-situ.readthedocs.io)
 - [Catalyst replay](https://catalyst-in-situ.readthedocs.io/en/latest/catalyst_replay.html)
 - [Catalyst repository](https://gitlab.kitware.com/paraview/catalyst)
+
+<!-- end_slide -->
+
+Conclusion | Cheatsheet
+===
+
+<!-- column_layout: [1,1] -->
+
+<!-- column: 0 -->
+
+## Configuration
+
+Environment variables
+- `CATALYST_IMPLEMENTATION_NAME`
+- `CATALYST_IMPLEMENTATION_PATHS`
+
+Or in the `catalyst_initialize` node:
+
+```yaml
+catalyst_load:
+    implementation: paraview
+    search-paths:
+    - /path/to/folder/containing/implementations
+```
+
+## Debugging
+
+- `CATALYST_DEBUG=1`
+- `PARAVIEW_LOG_CATALYST_VERBOSITY=INFO`
+
+<!-- column: 1 -->
+
+## ParaView Visualization Pipeline
+
+```yaml
+catalyst:
+    scripts:
+        filename: myparaview-catalyst-script.py
+```
+## ParaView IO Pipeline
+
+```yaml
+catalyst:
+    pipelines:
+        type: io
+        channel: grid
+        filename: dump/{timestep:03d}.vtpd
+```
