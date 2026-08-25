@@ -22,10 +22,11 @@ cmake\
 cmake --build build
 cmake --install build
 
-PYTHON_WRAPPERS_ROOT=$(ls -d ${LIBCATALYST_ROOT}/lib/python3*/site-packages)
-VIRTUALENV_SITE_ROOT=$(ls -d ${VIRTUAL_ENV:-.venv}/lib/python3*/site-packages)
+PYTHON_WRAPPERS_ROOT=$(find ${LIBCATALYST_ROOT} -type d -name site-packages)
+VIRTUALENV_SITE_ROOT=$(find ${VIRTUAL_ENV:-.venv} -type d -name site-packages)
 
 cat <<- EOF
   Now you have to install Catalyst python wrappers in your python venv with something like:
 
   echo ${PYTHON_WRAPPERS_ROOT:-install-here/lib/python3.14/site-packages} > ${VIRTUALENV_SITE_ROOT:-.venv/lib/python3.14/site-packages}/catalyst.pth
+EOF
