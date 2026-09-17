@@ -40,8 +40,12 @@ def main_posthoc(sim: Simulation, args):
 
         simdata = sim.data()
 
-        data = np.stack([simdata.vx.T, simdata.vy.T], axis=-1).astype(np.float64)
+        data = np.stack([simdata.vx.T, simdata.vy.T], axis=-1).astype("<d")
         data.tofile(args.dump_dir / f"velocity-field-{step:03d}.raw")
+
+    print(data.dtype)
+    print(simdata.spacing)
+    print(simdata.shape)
 
 
 def main_insitu(sim: Simulation, args):
