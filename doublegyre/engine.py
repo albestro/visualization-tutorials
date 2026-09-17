@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 import numpy as np
+import numpy.typing as npt
 
 
 @dataclass
@@ -9,10 +10,10 @@ class SimulationData:
     dt: float
     shape: tuple[int, int]
     spacing: [float, float]
-    x: np.array
-    y: np.array
-    vx: np.ndarray
-    vy: np.ndarray
+    x: npt.NDArray[np.float64]
+    y: npt.NDArray[np.float64]
+    vx: npt.NDArray[np.float64]
+    vy: npt.NDArray[np.float64]
 
     @property
     def time(self) -> float:
