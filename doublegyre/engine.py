@@ -27,9 +27,16 @@ class Simulation:
     https://shaddenlab.berkeley.edu/uploads/LCS-tutorial/examples.html
     """
 
-    def __init__(self, resolution=(256, 128)):
+    def __init__(self):
+        self._DOMAIN = (2.0, 1.0)
+
         self._step = 0
         self._dt = 0.1
+
+        resolution = (250, 125)
+        assert resolution[0] == 2 * resolution[1], resolution
+
+        self._ds = self._DOMAIN[0] / resolution[0]
 
         # EQUATION PARAMETERS
         # magnitude of velocity vectors
@@ -42,12 +49,18 @@ class Simulation:
         # 2D domain
         self._xshape, self._yshape = resolution
 
-        self._xaxis = np.linspace(0.0, 2.0, self._xshape)
-        self._yaxis = np.linspace(0.0, 1.0, self._yshape)
+        self._xaxis = np.linspace(0.0, self._ds * (self._xshape - 1), self._xshape)
+        self._yaxis = np.linspace(0.0, self._ds * (self._yshape - 1), self._yshape)
 
         # velocity vector field
         self._u = np.zeros(resolution, dtype=np.float64)
         self._v = np.zeros(resolution, dtype=np.float64)
+
+        assert self._xaxis.shape[0] == self._u.shape[0]
+        assert self._yaxis.shape[0] == self._u.shape[1]
+
+        assert self._xaxis.shape[0] == self._v.shape[0]
+        assert self._yaxis.shape[0] == self._v.shape[1]
 
     def compute_next_step(self):
         # stream equation is
@@ -93,10 +106,7 @@ class Simulation:
             vx=self._u,
             vy=self._v,
             shape=(self._xshape, self._yshape),
-            spacing=(
-                self._xaxis[1] - self._xaxis[0],
-                self._yaxis[1] - self._yaxis[0],
-            ),  # TODO
+            spacing=(self._ds, self._ds),
             iteration=self._step,
             dt=self._dt,
         )
