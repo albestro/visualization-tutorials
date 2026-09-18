@@ -8,7 +8,7 @@ layout: section
 
 # Catalyst API
 
-Basically, we have to add 3 things in our application code
+Basically, we have to add 3 things to our application code
 
 ```python
 catalyst_initialize(node_config)    # at application startup
@@ -64,7 +64,7 @@ It is up to the developer to decide what to pass to initialize.
 
 # Catalyst API `catalyst_execute`
 
-At each step, that we execute exactly as before, we have to map `SimulationData` to a **Conduit Mesh Blueprint** and pass it to `catalyst_execute` so that visualization is triggered.
+At each step, which we execute as before, we have to map `SimulationData` to a **Conduit Mesh Blueprint** and pass it to `catalyst_execute` so that visualization is triggered.
 
 ```python
 for step in range(args.timesteps):
@@ -85,7 +85,7 @@ for step in range(args.timesteps):
     catalyst.execute(node)
 ```
 
-This is a stripped down mapping just to give an idea, here you find more details about [Conduit Mesh Blueprint](https://llnl-conduit.readthedocs.io/en/latest/blueprint_mesh.html#mesh-blueprint).
+This is a stripped-down mapping to give an idea. More details about [Conduit Mesh Blueprint](https://llnl-conduit.readthedocs.io/en/latest/blueprint_mesh.html#mesh-blueprint) are available here.
 
 ---
 
@@ -112,7 +112,7 @@ pvpython simulation.py in-situ
 
 **Why?** Let's debug and see what happens under the hood!
 
-Let's use environment variable `CATALYST_DEBUG=1` to enable Catalyst debug logs
+Let's use the environment variable `CATALYST_DEBUG=1` to enable Catalyst debug logs
 
 ```bash
 $ CATALYST_DEBUG=1 pvpython ./simulation.py -t 10 in-situ
@@ -133,7 +133,7 @@ Note: use `set CATALYST_DEBUG=1` on Windows <cib-windows/>
 
 Let's use `CATALYST_IMPLEMENTATION_NAME` to tell Catalyst the name of the implementation we want to use.
 
-It could be any implementation, `stub` one as we've already seen, or `Ascent`, or `AdiosCatalyst`, or a custom one...
+It could be any implementation, the `stub` one as we've already seen, or `Ascent`, or `AdiosCatalyst`, or a custom one...
 but for the sake of simplicity, we'll use the one shipped with ParaView: **ParaView Catalyst**.
 
 <cib-linux/> <cib-apple/>

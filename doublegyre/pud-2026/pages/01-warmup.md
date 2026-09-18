@@ -12,7 +12,7 @@ Code in `simulation.py` manages a simple `Simulation` with a very basic interfac
 
 We don't need to know the internals of the simulation in `engine.py`.
 
-It is enough knowing that running `sim` the `Simulation` means
+It is enough to know that running the `Simulation` means
 
 ```python
 for step in range(args.timesteps):
@@ -95,4 +95,4 @@ $ pvpython simulation.py -t 10
 [==================================================] 010/010 [100%]
 ```
 
-Simulation ran succesfully. It didn't produce anything!
+Simulation ran successfully, but it didn't produce anything!

@@ -34,7 +34,7 @@ catalyst:
 
 # Initialize ParaView Catalyst
 
-Since we implemented the initialization phase so that i parse a YAML file and use it as config node for `catalyst_initialize`.
+Since we implemented the initialization phase so that it parses a YAML file and uses it as the config node for `catalyst_initialize`.
 
 ```python
 node = conduit.Node()
@@ -58,7 +58,7 @@ catalyst:
 
 # ParaView Catalyst Pipeline Script
 
-We need to create a ParaView Catalsyt python script to describe what visualization we want to produce.
+We need to create a ParaView Catalyst Python script to describe what visualization we want to produce.
 
 ```python
 from paraview.simple import *
@@ -88,7 +88,7 @@ Either manually like this, or...
 
 ... or with ParaView GUI, which is definitely **RECOMMENDED**.
 
-In order to play with data in the GUI, we need data from the simulation first...but to get the data from the simulation we need to instruct catalyst to dump data from the simulation (with a script?!).
+To create a pipeline in the GUI, we first need sample data from the simulation. But to get data from the simulation, we need to instruct Catalyst to dump it (using a script?!).
 
 <div class="flex justify-center">
 🐓 or 🐣
@@ -98,7 +98,7 @@ In order to play with data in the GUI, we need data from the simulation first...
 
 # ParaView Catalyst | Dump
 
-One common option is that our simulation already implements **post-hoc** visualization paradigm, with a format compatible with any of the reader available in ParaView.
+One common option is that our simulation already implements the **post-hoc** visualization paradigm, with a format compatible with any of the readers available in ParaView.
 The most basic one is **binary format**, simply implemented in the example thanks to **numpy**
 
 ```python
@@ -121,7 +121,7 @@ velocity-field-001.raw velocity-field-003.raw velocity-field-005.raw velocity-fi
 
 # ParaView - Load Binary Data
 
-And this can be read with `ImageReader` source filter in ParaView by specifying
+And this can be read with the `ImageReader` source filter in ParaView by specifying
 
 <div class="text-sm flex justify-center [&_table]:w-90">
 
@@ -177,10 +177,10 @@ Now we have loaded the data in the ParaView GUI! Let's create a Catalyst script!
 
 # Last step before running...
 
-With the ParaView GUI, you created a pipeline starting from a representative source, i.e. in our case the binary data loaded with `ImageReader` filter.
+With the ParaView GUI, you created a pipeline starting from a representative source, i.e., in our case, the binary data loaded with the `ImageReader` filter.
 
-**Saving Catalyst State** actually saves this exact pipeline, *almost* ready to be used with ParaView Catalyst implementation.
-*Almost*, because you have to manually replace the fictitious source, with the source that Catalyst can actually use: **TrivialProducer**.
+**Saving Catalyst State** actually saves this exact pipeline, *almost* ready to use with the ParaView Catalyst implementation.
+*Almost*, because you have to manually replace the fictitious source with the source that Catalyst can actually use: **TrivialProducer**.
 
 ```diff {class:'text-xs'}
  # create a new 'Image Reader'
@@ -200,7 +200,7 @@ The name `registrationName` must match the name of the channel sent to Catalyst.
 
 # Running with ParaView Catalyst Script
 
-At this point we have the script, and we know how to specify it to Catalyst implementation via the node given to `catalyst_initialize`.
+At this point we have the script, and we know how to specify it to the Catalyst implementation via the node given to `catalyst_initialize`.
 
 ```yaml
 # config_catalyst/run_script.yaml
@@ -213,7 +213,7 @@ catalyst:
 pvpython simulation.py in-situ --config config_catalyst/run_script.yaml
 ```
 
-And produce visualization output of our simulation!
+And produce visualization output from our simulation!
 
 ```bash
 $ ls datasets

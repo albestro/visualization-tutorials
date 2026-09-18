@@ -8,9 +8,10 @@ layout: section
 
 # ParaView Catalyst | ParaView `pipelines/io`
 
-In `initialize` protocol we have `pipelines` protocol
+If we don't (or don't want to) have post-hoc for dumping data, in ParaView Catalyst `initialize` protocol we have the `pipelines` protocol
 
 ```yaml
+# dump-steps.yml
 catalyst:
     pipelines:
         type:       io
@@ -18,16 +19,11 @@ catalyst:
         filename:   steps-data/output_{timestep:03d}.vtpd
 ```
 
-By adding such a pipeline to the initialization node we get `steps-data` folder with data step by step.
-
-Let's see it in action
-
 ```bash
-$ pvpython simulation.py -t 5 in-situ --config dump-steps.yaml
+$ pvpython simulation.py -t 5 in-situ --config dump-steps.yml
 ```
 
-
-And the output is there, and it can be easily opened in ParaView.
+that by adding such a pipeline to the initialization node, it dumps data step by step in `steps-data` folder, which can be easily opened in ParaView.
 
 ```bash
 $ ls steps-data
