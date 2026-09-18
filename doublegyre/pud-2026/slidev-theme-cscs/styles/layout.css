@@ -1,0 +1,236 @@
+/* CSCS corporate theme — matches the CSCS PowerPoint template_16to9 */
+
+#app {
+  .slidev-slide-content,
+  .print-slide-container {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-family: Arial, Helvetica, sans-serif;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-bold;
+      color: #404040;
+    }
+
+    h1 {
+      @apply text-4xl;
+    }
+
+    h2 {
+      @apply text-3xl;
+    }
+
+    h3 {
+      @apply text-2xl;
+    }
+
+    strong {
+      @apply font-bold text-black;
+    }
+
+    em {
+      @apply italic;
+    }
+
+    a {
+      color: #a60b16;
+      text-decoration: underline;
+    }
+
+    ul,
+    ol {
+      li::marker {
+        color: #a60b16;
+      }
+    }
+
+    blockquote {
+      border-left-width: 4px;
+      border-left-color: #a60b16;
+      padding-left: 1rem;
+      font-style: italic;
+      color: #000000;
+      background: transparent;
+    }
+
+    /* Code blocks */
+    .slidev-code.shiki {
+      background: #f6f8fa !important;
+    }
+
+    :not(pre) > code {
+      background: #f6f8fa;
+      color: #24292f;
+    }
+
+    /* Tables */
+    table {
+      @apply w-full text-left border-collapse;
+    }
+
+    th,
+    td {
+      @apply border-b border-gray-300 py-2 px-3;
+    }
+
+    th {
+      @apply font-bold border-b-2 border-black;
+    }
+  }
+
+  /* Cover */
+  .slidev-layout.cover {
+    h1 {
+      @apply font-bold text-left;
+      color: #404040;
+      font-size: 1.75rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      @apply text-left italic;
+      color: #808080;
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    p,
+    ul,
+    ol {
+      @apply text-left leading-snug;
+      color: #808080;
+      font-size: 1rem;
+    }
+
+    h1 + h2 {
+      @apply mt-0;
+    }
+
+    h1 + p,
+    h2 + p {
+      @apply mt-8;
+    }
+
+    p + p,
+    p + ul,
+    p + ol {
+      @apply mt-1;
+    }
+
+    p + h2,
+    ul + h2,
+    table + h2 {
+      @apply mt-10;
+    }
+  }
+
+  /* Intro (similar to cover) */
+  .slidev-layout.intro {
+    @apply h-full grid;
+
+    h1 {
+      @apply text-5xl leading-tight;
+    }
+
+    h1 + p {
+      @apply text-xl -mt-2 mb-4;
+    }
+
+    p + h2,
+    ul + h2,
+    table + h2 {
+      @apply mt-10;
+    }
+  }
+
+  /* Section (part divider) */
+  .slidev-layout.section {
+    h1 {
+      @apply text-3xl font-bold leading-tight text-left;
+      color: #404040;
+    }
+
+    h2 {
+      @apply text-2xl font-bold leading-snug text-left mt-2;
+      color: #404040;
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply text-xl font-normal leading-snug text-left mt-1;
+      color: #808080;
+    }
+  }
+
+  /* Statement */
+  .slidev-layout.statement {
+    @apply text-center grid h-full;
+
+    h1 {
+      @apply text-5xl font-bold;
+    }
+  }
+
+  /* Fact */
+  .slidev-layout.fact {
+    @apply text-center grid h-full;
+
+    h1 {
+      @apply text-7xl font-bold;
+    }
+
+    h1 + p {
+      @apply font-bold text-2xl;
+    }
+  }
+
+  /* Quote */
+  .slidev-layout.quote {
+    @apply grid h-full;
+
+    h1 + p {
+      @apply mt-2;
+    }
+  }
+
+  /* Author */
+  .slidev-layout.author {
+    img {
+      @apply rounded-full mx-auto;
+    }
+
+    h1 {
+      @apply text-3xl font-semibold mb-0;
+    }
+
+    h1 + p {
+      @apply max-w-40ch mx-auto;
+    }
+
+    footer {
+      @apply pt-16 text-sm flex justify-center items-center;
+
+      a {
+        @apply ms-2 me-6;
+      }
+
+      a:not(:hover) {
+        color: inherit !important;
+      }
+    }
+  }
+
+  /* Image left / right */
+  .slidev-layout.image-left,
+  .slidev-layout.image-right {
+    @apply h-full;
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "slidev-theme-cscs",
+  "version": "0.1.0",
+  "description": "CSCS corporate theme for Slidev, matching the CSCS PowerPoint template",
+  "author": "Alberto Invernizzi",
+  "license": "MIT",
+  "private": true,
+  "files": [
+    "components",
+    "layouts",
+    "public",
+    "setup",
+    "styles",
+    "layoutHelper.ts",
+    "README.md"
+  ],
+  "keywords": [
+    "slidev",
+    "slidev-theme",
+    "cscs"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "slidev": ">=52.0.0"
+  },
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/theme-default": "latest",
+    "@slidev/types": "^52.16.0",
+    "codemirror-theme-vars": "^0.1.2",
+    "prism-theme-vars": "^0.2.5"
+  },
+  "slidev": {
+    "colorSchema": "light",
+    "highlighter": "shiki",
+    "defaults": {
+      "fonts": {
+        "sans": "Arial, Helvetica, sans-serif",
+        "mono": "Fira Code, monospace"
+      }
+    }
+  }
+}

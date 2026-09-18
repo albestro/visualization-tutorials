@@ -1,0 +1,49 @@
+@import 'prism-theme-vars/base.css';
+@import 'codemirror-theme-vars/base.css';
+@import 'prism-theme-vars/to-codemirror.css';
+
+:root {
+  --prism-font-family: var(--slidev-code-font-family);
+
+  /* Light code theme (github-light inspired) */
+  --prism-foreground: #24292f;
+  --prism-background: #f6f8fa;
+  --prism-comment: #6e7781;
+  --prism-string: #0a3069;
+  --prism-literal: #0550ae;
+  --prism-number: #0550ae;
+  --prism-keyword: #cf222e;
+  --prism-function: #8250df;
+  --prism-boolean: #0550ae;
+  --prism-constant: #0550ae;
+  --prism-deleted: #82071e;
+  --prism-class: #953800;
+  --prism-builtin: #0550ae;
+  --prism-property: #0550ae;
+  --prism-namespace: #953800;
+  --prism-punctuation: #24292f;
+  --prism-decorator: #6e7781;
+  --prism-regex: #0a3069;
+  --prism-json-property: #0550ae;
+}
+
+pre[class*='language-'] {
+  @apply p-2;
+}
+
+:not(pre) > code {
+  font-size: 0.9em;
+  background: var(--prism-background);
+  color: var(--prism-foreground);
+  @apply font-light py-0.5 px-1 rounded;
+}
+
+:not(pre) > code:before,
+:not(pre) > code:after {
+  content: '`';
+  opacity: 0.50;
+}
+
+:not(pre) > code:before {
+  margin-right: -0.08em;
+}

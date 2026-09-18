@@ -1,0 +1,22 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap-style: balance;
+}
+
+:root {
+  /* CSCS PowerPoint template palette */
+  --cscs-black: #000000;
+  --cscs-white: #ffffff;
+  --cscs-dark-blue: #1f407a;
+  --cscs-red: #e2001a;
+  --cscs-olive: #72791c;
+  --cscs-teal: #007a96;
+  --cscs-brown: #974806;
+  --cscs-purple: #800080;
+  --cscs-gold: #a78720;
+  --cscs-maroon: #a60b16;
+}
