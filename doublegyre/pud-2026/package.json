@@ -1,0 +1,20 @@
+{
+  "name": "pud-2026",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@iconify-json/cib": "^1.2.3",
+    "@slidev/cli": "^52.19.2",
+    "@slidev/theme-default": "latest",
+    "slidev-theme-dracula": "^0.2.5",
+    "vue": "^3.5.33"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.63.0"
+  }
+}
