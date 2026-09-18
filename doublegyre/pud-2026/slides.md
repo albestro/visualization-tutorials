@@ -1,22 +1,19 @@
 ---
-theme: dracula
+theme: cscs
 defaults:
     layout: default
+    footer: ParaView User Day 2026
 layout: cover
+background: /cover-bg-alt1.jpg
 ---
 
 # Catalyst in-situ Hands-on
+## A guided walkthrough with a Python example  
 
-A guided walkthrough with a Python example
+Alberto Invernizzi (ETH Zurich | CSCS)
 
-<div class="absolute bottom-10">
-  <span class="font-700">
-    Alberto Invernizzi (ETH Zurich | CSCS)
-  </span>
-  <span class="font-700">
-    ParaView Users' Day 2026
-  </span>
-</div>
+ParaView User Day 2026  
+23–25 September 2026
 
 ---
 

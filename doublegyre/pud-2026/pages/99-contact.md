@@ -1,8 +1,7 @@
 ---
 layout: cover
+background: /closing-bg.jpg
 ---
-
-## Contact
 
 Alberto Invernizzi (ETH Zurich | CSCS)
 

@@ -2,11 +2,11 @@
 layout: section
 ---
 
-## Extra
+# Extra
 
 ---
 
-# ParaView Catalyst -- ParaView `pipelines/io`
+# ParaView Catalyst | ParaView `pipelines/io`
 
 In `initialize` protocol we have `pipelines` protocol
 

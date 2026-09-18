@@ -2,8 +2,7 @@
 layout: section
 ---
 
-## Part 1
-### Warm-up
+# Part 1 | Warm-up
 
 ---
 
@@ -81,9 +80,9 @@ set PATH=C:\Program Files\ParaView 6.2.0\bin;%PATH%
 
 ---
 
-## Quick start
+# Quick start
 
-Now we can run our python simulation!
+Now we can run our Python simulation!
 
 ```bash
 pvpython simulation.py

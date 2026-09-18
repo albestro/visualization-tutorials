@@ -2,8 +2,7 @@
 layout: section
 ---
 
-## Part 2
-### Introducing Catalyst
+# Part 2 | Introducing Catalyst
 
 ---
 
@@ -126,7 +125,7 @@ catalyst debug: no implementation named; using the `stub` implementation: 0x10a6
 Note: use `set CATALYST_DEBUG=1` on Windows <cib-windows/>
 
 
-💡 aha! it's the stub implementation!
+💡 Aha! It's the stub implementation!
 
 ---
 

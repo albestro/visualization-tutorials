@@ -2,8 +2,7 @@
 layout: section
 ---
 
-## Part 3
-### ParaView Catalyst
+# Part 3 | ParaView Catalyst
 
 ---
 
@@ -139,7 +138,7 @@ And this can be read with `ImageReader` source filter in ParaView by specifying
 
 </div>
 
-**\*** It should match with what catalyst produces.
+**\*** It should match with what Catalyst produces.
 
 <style>
 th, td {
@@ -156,7 +155,7 @@ th, td {
 
 <div>
 
-Now we have loaded data in ParaView GUI! Let's create a catalyst script! 🚀
+Now we have loaded the data in the ParaView GUI! Let's create a Catalyst script! 🚀
 
 </div>
 
