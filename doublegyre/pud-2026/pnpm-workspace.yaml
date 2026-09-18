@@ -1,3 +1,6 @@
+packages:
+  - 'slidev-theme-cscs'
+
 shamefullyHoist: true
 
 # `playwright-chromium` is needed for `slidev export` (PDF/PNG/PPTX) and has a
