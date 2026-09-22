@@ -103,7 +103,7 @@ The most basic one is **binary format**, simply implemented in the example thank
 
 ```python
 simdata = sim.data()
-data = np.stack([simdata.vx.T, simdata.vy.T], axis=-1).astype(np.float64)
+data = np.stack([simdata.vx, simdata.vy], axis=-1).astype(np.float64)
 data.tofile(f"velocity-field-{step:03d}.raw")
 ```
 
@@ -133,10 +133,10 @@ So, let's open ParaView and load binary data!
 |Data Byte Order|LittleEndian|
 |Data Spacing **\***|0.008 0.008|
 |Number Of Scalar Components|2|
-|File Lower Left|Unchecked|
+|File Lower Left|✔️|
 |Scalar Array Name **\***|Velocity|
 |File Dimensionality|2|
-|Dimensions|256 128 0|
+|Dimensions|250 125|
 
 </div>
 

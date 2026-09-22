@@ -30,14 +30,6 @@ class Simulation:
     def __init__(self):
         self._DOMAIN = (2.0, 1.0)
 
-        self._step = 0
-        self._dt = 0.1
-
-        resolution = (250, 125)
-        assert resolution[0] == 2 * resolution[1], resolution
-
-        self._ds = self._DOMAIN[0] / resolution[0]
-
         # EQUATION PARAMETERS
         # magnitude of velocity vectors
         self._A = 0.1
@@ -46,21 +38,18 @@ class Simulation:
         # separation motion amplitude
         self._ϵ = 0.25
 
-        # 2D domain
-        self._xshape, self._yshape = resolution
+        self._dt = 0.1
 
+        resolution = (250, 125)
+        assert resolution[0] == 2 * resolution[1], resolution
+
+        self._ds = self._DOMAIN[0] / resolution[0]
+
+        self._xshape, self._yshape = resolution
         self._xaxis = np.linspace(0.0, self._ds * (self._xshape - 1), self._xshape)
         self._yaxis = np.linspace(0.0, self._ds * (self._yshape - 1), self._yshape)
 
-        # velocity vector field
-        self._u = np.zeros(resolution, dtype=np.float64)
-        self._v = np.zeros(resolution, dtype=np.float64)
-
-        assert self._xaxis.shape[0] == self._u.shape[0]
-        assert self._yaxis.shape[0] == self._u.shape[1]
-
-        assert self._xaxis.shape[0] == self._v.shape[0]
-        assert self._yaxis.shape[0] == self._v.shape[1]
+        self._step = 0
 
     def compute_next_step(self):
         # stream equation is
@@ -79,27 +68,19 @@ class Simulation:
 
         # velocity field
         # vx = - δψ/δy    and     vy = δψ/δx
-        for iy, y in enumerate(self._yaxis):
-            for ix, x in enumerate(self._xaxis):
-                # ϝ(x,t) = a(t) x² + b(t) x
-                ϝ_x_t = a_t * x**2 + b_t * x
-
-                # δf/δx
-                δϝ_δx = 2 * a_t * x + b_t
-
-                # u = -δψ/δy
-                self._u[ix, iy] = (
-                    -np.pi * self._A * np.sin(np.pi * ϝ_x_t) * np.cos(np.pi * y)
-                )
-                # v = δψ/δx
-                self._v[ix, iy] = (
-                    np.pi * self._A * np.cos(np.pi * ϝ_x_t) * np.sin(np.pi * y) * δϝ_δx
-                )
+        x, y = np.meshgrid(self._xaxis, self._yaxis, indexing="xy")
+        # ϝ(x,t) = a(t) x² + b(t) x
+        ϝ_x_t = a_t * x**2 + b_t * x
+        # δf/δx
+        δϝ_δx = 2 * a_t * x + b_t
+        # u = -δψ/δy
+        self._u = -np.pi * self._A * np.sin(np.pi * ϝ_x_t) * np.cos(np.pi * y)
+        # v = δψ/δx
+        self._v = np.pi * self._A * np.cos(np.pi * ϝ_x_t) * np.sin(np.pi * y) * δϝ_δx
 
         self._step += 1
 
     def data(self) -> SimulationData:
-        # note that self._u and self._v uses ij indexing with row-major layout
         return SimulationData(
             x=self._xaxis,
             y=self._yaxis,

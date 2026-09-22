@@ -40,7 +40,7 @@ def main_posthoc(sim: Simulation, args):
 
         simdata = sim.data()
 
-        data = np.stack([simdata.vx.T, simdata.vy.T], axis=-1).astype("<d")
+        data = np.stack([simdata.vx, simdata.vy], axis=-1).astype("<d")
         data.tofile(args.dump_dir / f"velocity-field-{step:03d}.raw")
 
     print(data.dtype)
@@ -77,7 +77,7 @@ def main_insitu(sim: Simulation, args):
         channel["type"] = "mesh"
         mesh = channel["data"]
 
-        xs, ys = np.meshgrid(simdata.x, simdata.y, indexing="ij")
+        xs, ys = np.meshgrid(simdata.x, simdata.y, indexing="xy")
         mesh["coordsets/coords/type"] = "explicit"
         mesh["coordsets/coords/values/x"].set_external(xs.ravel())
         mesh["coordsets/coords/values/y"].set_external(ys.ravel())
@@ -85,9 +85,8 @@ def main_insitu(sim: Simulation, args):
         mesh["topologies/mesh/coordset"] = "coords"
         mesh["topologies/mesh/type"] = "structured"
         # note: topology is number of elements, not number of points
-        # TODO order is important to get the right mesh
-        mesh["topologies/mesh/elements/dims/i"] = ny - 1
-        mesh["topologies/mesh/elements/dims/j"] = nx - 1
+        mesh["topologies/mesh/elements/dims/i"] = nx - 1
+        mesh["topologies/mesh/elements/dims/j"] = ny - 1
 
         fields = mesh["fields"]
 
