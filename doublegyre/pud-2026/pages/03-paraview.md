@@ -140,7 +140,7 @@ So, let's open ParaView and load binary data!
 
 </div>
 
-**\*** *It should match with what Catalyst produces.*
+**\*** *It should match with what Catalyst produces. A misalignment will result in problems at runtime.*
 
 <style>
 th, td {
@@ -232,13 +232,9 @@ pvpython simulation.py in-situ --config config_catalyst/run_script.yaml
 
 And produce visualization output from our simulation!
 
-```bash
+```console
 $ ls datasets
-vector_field-000010.png vector_field-000060.png vector_field-000110.png vector_field-000160.png vector_field-000210.png
-vector_field-000020.png vector_field-000070.png vector_field-000120.png vector_field-000170.png vector_field-000220.png
-vector_field-000030.png vector_field-000080.png vector_field-000130.png vector_field-000180.png vector_field-000230.png
-vector_field-000040.png vector_field-000090.png vector_field-000140.png vector_field-000190.png vector_field-000240.png
-vector_field-000050.png vector_field-000100.png vector_field-000150.png vector_field-000200.png vector_field-000250.png
+vector-field_0025.png vector-field_0050.png vector-field_0075.png vector-field_0100.png
 ```
 
 ---
