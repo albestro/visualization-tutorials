@@ -133,7 +133,7 @@ So, let's open ParaView and load binary data!
 |Data Byte Order|LittleEndian|
 |Data Spacing **\***|0.008 0.008|
 |Number Of Scalar Components|2|
-|File Lower Left|✔️|
+|File Lower Left|Unchecked|
 |Scalar Array Name **\***|Velocity|
 |File Dimensionality|2|
 |Dimensions|250 125|
