@@ -104,10 +104,16 @@ def main_insitu(sim: Simulation, args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Doubly Gyre Simulation")
+
+    def positive_int(val):
+        if (v := int(val)) <= 0:
+            raise ValueError(f"{val} is not > 0")
+        return v
+
     parser.add_argument(
         "-t",
         "--timesteps",
-        type=int,
+        type=positive_int,
         help="number of timesteps to run the miniapp",
         default=200,
     )
