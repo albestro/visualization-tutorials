@@ -35,6 +35,12 @@ catalyst_finalize(node_info)
 ```
 
 ---
+layout: statement
+---
+
+Let's explore some details in `simulation.py:main_insitu`
+
+---
 
 # Catalyst API `catalyst_initialize`
 
@@ -108,11 +114,17 @@ We instrumented our `Simulation` with these calls, so now it's time to run it us
 pvpython simulation.py in-situ
 ```
 
-**What happens?** The simulation runs, but nothing is produced.
+**What happens?** <v-click>The simulation runs, but nothing is produced. </v-click>
+
+<v-click>
 
 **Why?** Let's debug and see what happens under the hood!
 
 Let's use the environment variable `CATALYST_DEBUG=1` to enable Catalyst debug logs
+
+</v-click>
+
+<v-click>
 
 ```bash
 $ CATALYST_DEBUG=1 pvpython ./simulation.py -t 10 in-situ
@@ -124,8 +136,13 @@ catalyst debug: no implementation named; using the `stub` implementation: 0x10a6
 
 Note: use `set CATALYST_DEBUG=1` on Windows <cib-windows/>
 
+</v-click>
+
+<v-click>
 
 💡 Aha! It's the stub implementation!
+
+</v-click>
 
 ---
 
@@ -167,7 +184,11 @@ catalyst debug: loaded implementation: 0x1366684e8
 [==================================================] 010/010 [100%]
 ```
 
+<v-click>
+
 It works but **still no output!**
+
+</v-click>
 
 ---
 layout: statement

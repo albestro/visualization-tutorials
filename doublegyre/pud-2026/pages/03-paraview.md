@@ -91,7 +91,7 @@ Either manually like this, or...
 To create a pipeline in the GUI, we first need sample data from the simulation. But to get data from the simulation, we need to instruct Catalyst to dump it (using a script?!).
 
 <div class="flex justify-center">
-🐓 or 🐣
+🐓vs 🐣
 </div>
 
 ---
@@ -117,11 +117,13 @@ velocity-field-000.raw velocity-field-002.raw velocity-field-004.raw velocity-fi
 velocity-field-001.raw velocity-field-003.raw velocity-field-005.raw velocity-field-007.raw velocity-field-009.raw
 ```
 
+And binary data can be read with the `ImageReader` source filter in ParaView!
+
 ---
 
-# ParaView - Load Binary Data
+# ParaView | Load Binary Data
 
-And this can be read with the `ImageReader` source filter in ParaView by specifying
+So, let's open ParaView and load binary data!
 
 <div class="text-sm flex justify-center [&_table]:w-90">
 
@@ -138,7 +140,7 @@ And this can be read with the `ImageReader` source filter in ParaView by specify
 
 </div>
 
-**\*** It should match with what Catalyst produces.
+**\*** *It should match with what Catalyst produces.*
 
 <style>
 th, td {
@@ -170,6 +172,21 @@ Now we have loaded the data in the ParaView GUI! Let's create a Catalyst script!
 **Remember to add at least an Extractor filter!** Otherwise you're still not producing anything, right?
 
 </div>
+
+</div>
+
+---
+
+<div class="flex flex-col h-full">
+
+# Let's save
+
+Proceed saving it by clicking <img src="/pqCatalyst.svg" class="w-5 h-5 inline-block align-middle" /> or
+`File > Save Catalyst State`
+
+<img src="/catalyst-dialog.png" class="flex w-full h-full object-contain" />
+
+Here you can see also other options (e.g. output folder name, trigger frequency/window)
 
 </div>
 
@@ -235,4 +252,5 @@ vector_field-000050.png vector_field-000100.png vector_field-000150.png vector_f
 <video src="/doublegyre.mp4" autoplay loop muted playsinline class="max-h-full max-w-full w-auto h-auto object-contain rounded-lg" />
 
 </div>
+
 </div>

@@ -36,21 +36,19 @@ class SimulationData:
     iteration: int                          # step index
     dt: float                               # time interval between steps
     shape: tuple[int, int]                  # shape of the 2D mesh
-    spacing: [float, float]                 # spacing (regular mesh)
-    x: np.array                             # x coordinates
-    y: np.array                             # y coordinates
-    vx: np.ndarray                          # velocity x-component
-    vy: np.ndarray                          # velocity y-component
+    spacing: tuple[float, float]            # spacing (regular mesh)
+    x: npt.NDArray[np.float64]              # x coordinates
+    y: npt.NDArray[np.float64]              # y coordinates
+    vx: npt.NDArray[np.float64]             # velocity x-component
+    vy: npt.NDArray[np.float64]             # velocity y-component
 
     @property
     def time(self) -> float:                # helper function that returns timestep
         return self.iteration * self.dt
 ```
 
-This is the data we are going to use for producing the visualization.
-
+This is the data we are going to use for producing the visualization.  
 *It is just an example, your code might have different needs.*
-
 
 ---
 
@@ -62,21 +60,11 @@ Requirements:
 
 Then...
 
-<cib-apple/>
-
-```bash
-export PATH=/Applications/ParaView-6.1.0.app/Contents/bin:$PATH
-```
-
-<cib-linux/>
-```bash
-export PATH=<system path>/ParaView-6.1.0-MPI-Linux-Python3.12-x86_64/bin:$PATH
-```
-
-<cib-windows/> (cmd):
-```
-set PATH=C:\Program Files\ParaView 6.2.0\bin;%PATH%
-```
+|Platform|PATH|
+|-|-|
+|<cib-apple/>|`export PATH=/Applications/ParaView-6.1.0.app/Contents/bin:$PATH`|
+|<cib-linux/>|`export PATH=<syspath>/ParaView-6.1.0-MPI-Linux-Python3.12-x86_64/bin:$PATH`|
+|<cib-windows/> (cmd)|`set PATH=C:\Program Files\ParaView 6.1.0\bin;%PATH%`|
 
 ---
 

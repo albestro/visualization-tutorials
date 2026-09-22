@@ -26,7 +26,7 @@ ParaView User Day 2026
     * API
     * Running the example with catalyst
 3. **ParaView Catalyst**: The ParaView Catalyst implementation
-    * How to pass information and data to the implementation
+    * How to pass information and data to ParaView Catalyst
     * How to create a ParaView Catalyst python script
     * Run the visualization
 
