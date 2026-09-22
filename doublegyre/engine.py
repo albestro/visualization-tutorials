@@ -9,7 +9,7 @@ class SimulationData:
     iteration: int
     dt: float
     shape: tuple[int, int]
-    spacing: [float, float]
+    spacing: tuple[float, float]
     x: npt.NDArray[np.float64]
     y: npt.NDArray[np.float64]
     vx: npt.NDArray[np.float64]
