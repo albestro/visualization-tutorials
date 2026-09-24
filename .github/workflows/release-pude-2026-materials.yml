@@ -7,8 +7,7 @@ on:
       - doublegyre-pude26
     paths:
       - 'doublegyre/**'
-    paths-ignore:
-      - 'doublegyre/pude-2026/**'
+      - '!doublegyre/pude-2026/**'
   workflow_dispatch:
 
 permissions:
