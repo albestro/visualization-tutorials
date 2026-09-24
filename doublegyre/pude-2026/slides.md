@@ -2,7 +2,7 @@
 theme: cscs
 defaults:
     layout: default
-    footer: ParaView User Day 2026
+    footer: PUDE 2026
 layout: cover
 background: /cover-bg-alt1.jpg
 ---
@@ -12,7 +12,7 @@ background: /cover-bg-alt1.jpg
 
 Alberto Invernizzi (ETH Zurich | CSCS)
 
-ParaView User Day 2026  
+ParaView User Day Europe 2026  
 23–25 September 2026
 
 ---
