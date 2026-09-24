@@ -31,6 +31,14 @@ ParaView User Day Europe 2026
     * Run the visualization
 
 ---
+
+# Resources
+
+- **Hands-on materials:** <https://albestro.github.io/visualization-tutorials/materials/>
+- **Slides:** <https://albestro.github.io/visualization-tutorials/>
+- **Repository:** <https://github.com/albestro/visualization-tutorials>
+
+---
 src: ./pages/01-warmup.md
 hide: false
 ---
