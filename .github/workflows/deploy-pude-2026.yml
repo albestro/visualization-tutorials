@@ -53,11 +53,11 @@ jobs:
           <html>
             <head>
               <meta charset="utf-8">
-              <meta http-equiv="refresh" content="0; url=https://github.com/${{ github.repository }}/releases/tag/pude-2026-materials-latest">
+              <meta http-equiv="refresh" content="0; url=https://github.com/${{ github.repository }}/releases/tag/pude-2026-materials">
               <title>Redirecting to materials...</title>
             </head>
             <body>
-              <p>Redirecting to <a href="https://github.com/${{ github.repository }}/releases/tag/pude-2026-materials-latest">hands-on materials</a>...</p>
+              <p>Redirecting to <a href="https://github.com/${{ github.repository }}/releases/tag/pude-2026-materials">hands-on materials</a>...</p>
             </body>
           </html>
           EOF

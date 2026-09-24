@@ -21,7 +21,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      TAG: pude-2026-materials-latest
+      TAG: pude-2026-materials
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
         # Zip only committed files from doublegyre/, excluding the slides subfolder.
         run: |
           cd doublegyre
-          zip -r ../pude-2026-materials.zip . -x 'pude-2026/*' 'pude-2026/**/*'
+          git ls-files -z | grep -zv '^pude-2026/' | xargs -0 git archive --format=zip --output=../pude-2026-materials.zip HEAD
 
       - name: Create or update pre-release
         env:
