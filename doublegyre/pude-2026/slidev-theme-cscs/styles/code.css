@@ -33,17 +33,11 @@ pre[class*='language-'] {
 
 :not(pre) > code {
   font-size: 0.9em;
-  background: var(--prism-background);
-  color: var(--prism-foreground);
-  @apply font-light py-0.5 px-1 rounded;
+  background: #eef2f7;
+  color: #24292f;
+  border: 1px solid #d8dee8;
+  padding: 0.08em 0.35em;
+  border-radius: 0.3em;
+  font-weight: 500;
 }
 
-:not(pre) > code:before,
-:not(pre) > code:after {
-  content: '`';
-  opacity: 0.50;
-}
-
-:not(pre) > code:before {
-  margin-right: -0.08em;
-}
