@@ -45,6 +45,23 @@ jobs:
         # Base path and router mode are set here so local dev/build need no changes.
         run: pnpm exec slidev build --base /${{ github.event.repository.name }}/ --router-mode hash
 
+      - name: Create materials redirect
+        run: |
+          mkdir -p dist/materials
+          cat > dist/materials/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta http-equiv="refresh" content="0; url=https://github.com/${{ github.repository }}/releases/tag/pude-2026-materials-latest">
+              <title>Redirecting to materials...</title>
+            </head>
+            <body>
+              <p>Redirecting to <a href="https://github.com/${{ github.repository }}/releases/tag/pude-2026-materials-latest">hands-on materials</a>...</p>
+            </body>
+          </html>
+          EOF
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

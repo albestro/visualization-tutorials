@@ -1,0 +1,50 @@
+name: Release PUDE 2026 materials
+
+on:
+  push:
+    branches:
+      # TODO: switch to `main` once this branch is merged
+      - doublegyre-pude26
+    paths:
+      - 'doublegyre/**'
+    paths-ignore:
+      - 'doublegyre/pude-2026/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-pude-2026-materials
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: pude-2026-materials-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pack materials
+        # Zip only committed files from doublegyre/, excluding the slides subfolder.
+        run: |
+          cd doublegyre
+          zip -r ../pude-2026-materials.zip . -x 'pude-2026/*' 'pude-2026/**/*'
+
+      - name: Create or update pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view "$TAG" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --repo "${{ github.repository }}" \
+              --prerelease \
+              --title "$TAG" \
+              --notes "Latest hands-on materials for the PUDE 2026 Catalyst tutorial."
+          fi
+          gh release upload "$TAG" \
+            --repo "${{ github.repository }}" \
+            --clobber \
+            pude-2026-materials.zip
