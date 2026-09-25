@@ -181,7 +181,8 @@ Now we have loaded the data in the ParaView GUI! Let's create a Catalyst script!
 
 # Let's save
 
-Proceed saving it by clicking <img src="/pqCatalyst.svg" class="w-5 h-5 inline-block align-middle" /> or
+1. Rename the source in the pipeline to `grid`: this should match with data passed to catalyst
+2. Proceed saving it by clicking <img src="/pqCatalyst.svg" class="w-5 h-5 inline-block align-middle" /> or
 `File > Save Catalyst State`
 
 <img src="/catalyst-dialog.png" class="flex w-full h-full object-contain" />
@@ -189,29 +190,6 @@ Proceed saving it by clicking <img src="/pqCatalyst.svg" class="w-5 h-5 inline-b
 Here you can see also other options (e.g. output folder name, trigger frequency/window)
 
 </div>
-
----
-
-# Last step before running...
-
-With the ParaView GUI, you created a pipeline starting from a representative source, i.e., in our case, the binary data loaded with the `ImageReader` filter.
-
-**Saving Catalyst State** actually saves this exact pipeline, *almost* ready to use with the ParaView Catalyst implementation.
-*Almost*, because you have to manually replace the fictitious source with the source that Catalyst can actually use: **TrivialProducer**.
-
-```diff {class:'text-xs'}
- # create a new 'Image Reader'
--velocityfield000raw = ImageReader(registrationName='velocity-field-000.raw', FileNames=[...])
--velocityfield000raw.Set(
--    ...
--    ScalarArrayName='Velocity',
--    FileDimensionality='2',
--    Dimensions=[250, 125, 0],
--)
-+velocityfield000raw = TrivialProducer(registrationName='grid')
-```
-
-The name `registrationName` must match the name of the channel sent to Catalyst.
 
 ---
 

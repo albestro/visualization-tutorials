@@ -52,6 +52,18 @@ This is the data we are going to use for producing the visualization.
 
 ---
 
+<div class="flex flex-col h-full">
+
+# A look at the data
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+<img src="/input-data.png" class="max-h-full max-w-full object-contain" alt="ParaView GUI"/>
+</div>
+
+</div>
+
+---
+
 # Workspace setup
 
 Requirements:
